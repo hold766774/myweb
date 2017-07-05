@@ -6,6 +6,7 @@ import com.myweb.tool.BottomBar;
 import com.myweb.tool.NavBar;
 import com.myweb.tool.TopBar;
 
+import org.omg.CORBA.Request;
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +24,7 @@ public class IndexAction implements Controller{
 		this.view = view;
 	}
 	@Override
-	public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse arg1) throws Exception {
 		// TODO Auto-generated method stub
 		ModelAndView mView=new ModelAndView(view);
 		/*NavBar topBar=new TopBar();
@@ -34,26 +35,9 @@ public class IndexAction implements Controller{
 		mView.addObject("top_nav", topNav.getBarContent());
 		NavBar bottomNav=BarFactory.CreateBar("bottom");
 		mView.addObject("bottom_nav", bottomNav.getBarContent());
-		
-		//基本类型 封装类
-		/*int a=3;
-		Integer bInteger=3;
-		mView.addObject("result", Integer.MAX_VALUE);
-		System.out.println(Integer.MAX_VALUE);//tomcat控制台*/	
-		
-		//== equals
-		String aString=new String("a");
-		String bString=new String("a");
-		//mView.addObject("result", aString==bString);//false
-		//mView.addObject("result", aString.equals(bString));//true
-		
-		int aint=Integer.parseInt("3");//类型转换
-		
-		//多个字符串相加
-		StringBuffer stringBuffer=new StringBuffer();
-		stringBuffer.append(aString);
-		stringBuffer.append(3);
-		mView.addObject("result", stringBuffer.toString());//true
+	
+		String id=request.getParameter("id");
+		mView.addObject("id", id);
 		return mView;
 	}
 

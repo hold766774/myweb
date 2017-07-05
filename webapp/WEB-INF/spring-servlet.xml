@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+        
+   <!-- 通过该语句可以扫描com.myweb及com.myweb下子包中的类  -->
+ <context:component-scan base-package="com.myweb"></context:component-scan>
 <!-- 页面目录配置V -->
 <!-- 这里表示指定控制器页面转向的目录及文件后缀 -->
 <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -12,13 +18,14 @@
         <property name="suffix" value=".jsp"></property>        
 </bean>
 <!-- url-v -->
-  <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+  <!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
   <property name="mappings">
   <props>
   	<prop key="/index.html">IndexAction</prop>
   </props>
   </property>
- </bean> 
+ </bean>  -->
+
 <!-- 控制器配置C  -->
 <!-- 在bean中配置有属性（包括bean格式的属性）时，bean对应的java文件内必须要定义一个与property的name名字一样的属性值，并且需要有这个属性值的getter和setter方法。 -->
 <bean id="IndexAction" class="com.myweb.IndexAction">

@@ -12,8 +12,8 @@
 	${top_nav}
 </div>
 <div style="min-height:300px">
-body content
-${result}
+
+${content}
 <div>
 ${id }
 </div>
