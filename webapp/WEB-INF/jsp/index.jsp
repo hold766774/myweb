@@ -13,6 +13,8 @@
 </div>
 <div style="min-height:300px">
 body content
+${result}
+
 </div>
 <div style="width:100%;height:30px;border-top:solid 1px gray">
 	${bottom_nav}程序员在囧途

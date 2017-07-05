@@ -34,6 +34,26 @@ public class IndexAction implements Controller{
 		mView.addObject("top_nav", topNav.getBarContent());
 		NavBar bottomNav=BarFactory.CreateBar("bottom");
 		mView.addObject("bottom_nav", bottomNav.getBarContent());
+		
+		//基本类型 封装类
+		/*int a=3;
+		Integer bInteger=3;
+		mView.addObject("result", Integer.MAX_VALUE);
+		System.out.println(Integer.MAX_VALUE);//tomcat控制台*/	
+		
+		//== equals
+		String aString=new String("a");
+		String bString=new String("a");
+		//mView.addObject("result", aString==bString);//false
+		//mView.addObject("result", aString.equals(bString));//true
+		
+		int aint=Integer.parseInt("3");//类型转换
+		
+		//多个字符串相加
+		StringBuffer stringBuffer=new StringBuffer();
+		stringBuffer.append(aString);
+		stringBuffer.append(3);
+		mView.addObject("result", stringBuffer.toString());//true
 		return mView;
 	}
 
