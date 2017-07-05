@@ -16,7 +16,8 @@ public class NewsAction {
 	public ModelAndView ShowNewsDetail(@RequestParam(value="id",required=false) String id)
 	{
 		// /news?id=3触发
-		ModelAndView modelAndView=new ModelAndView("news");
+		
+		ModelAndView modelAndView=new ModelAndView("news");//视图
 		if(id==null){
 			modelAndView.addObject("content", "这是新闻列表页面");
 		}else{
