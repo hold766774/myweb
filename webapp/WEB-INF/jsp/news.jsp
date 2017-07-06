@@ -29,7 +29,12 @@ ${content}
 <a href="#">${news["newstitle"]}</a> <br/>
 </c:forEach>
 
-
+<p>当前用户列表：</p>
+<div>
+<c:forEach items="${userlist }" var="user">
+${user["username"]} <br/>
+</c:forEach>
+</div>
 </div>
 ${pagebar }
 </div>

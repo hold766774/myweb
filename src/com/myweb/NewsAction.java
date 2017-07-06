@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import com.myweb.tool.NavBar;
 @Controller
 public class NewsAction {
 
+	@Autowired
+	JdbcTemplate jb;//自动寻找bean中id为jb的
 	@RequestMapping("/news")
 	public ModelAndView ShowNewsDetail(@RequestParam(value="id",required=false) String id)
 	{
@@ -97,6 +101,9 @@ public class NewsAction {
 		String[] newslist=(String[]) strings.toArray(new String[strings.size()]);
 		//string[]-->list
 		List<String> bList=Arrays.asList(b);
+		
+		List userlist=jb.queryForList("select * from users");
+		modelAndView.addObject("userlist", userlist);
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")
