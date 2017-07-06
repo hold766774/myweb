@@ -17,6 +17,7 @@
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>        
 </bean>
+ 
 <!-- url-v -->
   <!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
   <property name="mappings">

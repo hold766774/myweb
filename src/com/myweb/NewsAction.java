@@ -1,6 +1,7 @@
 package com.myweb;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +80,23 @@ public class NewsAction {
 		newsList.add(new NewsEntity(2,"新闻标题2"));
 		newsList.add(new NewsEntity(3,"新闻标题3"));
 		modelAndView.addObject("newsList", newsList);
+		
+		String[] a=new String[10];
+		a[0]="nihao";
+		a[1]="java";
+		System.out.println(a[0]);
+		String[] b={"a","c","e","f","g"};
+		for(int i=0;i<b.length;i++)
+		{
+			System.out.println(b[i]);
+		}
+		for (String string : b) {
+			System.out.println(string);
+		}
+		//list-->string[]
+		String[] newslist=(String[]) strings.toArray(new String[strings.size()]);
+		//string[]-->list
+		List<String> bList=Arrays.asList(b);
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")
