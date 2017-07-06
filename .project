@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>myNews</name>
+			<type>2</type>
+			<location>F:/eclipseProject/com.myweb.news/src</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -16,6 +16,9 @@
 
 ${content}
 <div>
+${newsEntity }
+</div>
+<div>
 <c:forEach items="${the_news }" var="newstitle">
 <a href="#">${newstitle}</a> <br/>
 </c:forEach>

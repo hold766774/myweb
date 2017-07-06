@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.myweb.tool.BarFactory;
 import com.myweb.tool.NavBar;
 
@@ -62,6 +63,9 @@ public class NewsAction {
 		stringBuffer.append("<a href=''>末页</a>");
 		//.addObject("pagebar", stringBuffer.toString());
 		modelAndView.addObject("pagebar", stringBuffer);
+		
+		com.myweb.news.NewsEntity newsEntity=new com.myweb.news.NewsEntity();
+		modelAndView.addObject("newsEntity", newsEntity.getNews());
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")
