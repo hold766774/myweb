@@ -1,7 +1,7 @@
 ﻿<style>
 #logintb td{text-align:center}
 </style>
-<p style="color:red;text-align:center">${info }</p>
+<p style="color:red;text-align:center">${result }</p>
 <form method="post" action="onlogin" id="loginfrm">
 <table style="width:600px;margin:0 auto;" id="logintb">
 	<tr>

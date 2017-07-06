@@ -9,13 +9,13 @@
 </head>
 <body>
 <div style="width:100%;height:95px;border-bottom:solid 1px gray">
-	${top_nav}
+	${top_nav}<a href="/unlog">注销登录</a>
 </div>
 <div style="min-height:300px">
 body content
 ${result}
 <div>
-${id }
+
 </div>
 </div>
 <div style="width:100%;height:30px;border-top:solid 1px gray">
