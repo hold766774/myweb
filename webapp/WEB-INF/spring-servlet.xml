@@ -27,6 +27,9 @@
    <bean id="jb" class="org.springframework.jdbc.core.JdbcTemplate">
     <property name="dataSource" ref="myDataSource" />
  </bean>
+ <bean id="userbean" class="com.myweb.users.User">
+ 	 <property name="username" value="zhangsan" />
+ </bean>
 <!-- url-v -->
   <!-- <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
   <property name="mappings">

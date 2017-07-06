@@ -16,6 +16,9 @@
 
 ${content}
 <div>
+${userbean.username }
+</div>
+<div>
 <c:forEach items="${newsList }" var="news">
 <a href="#">${news.getNewstitle()}--${news.newstitle}</a> <br/>
 </c:forEach>

@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -18,12 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myweb.news.NewsEntity;
 import com.myweb.tool.BarFactory;
 import com.myweb.tool.NavBar;
+import com.myweb.users.User;
 
 @Controller
 public class NewsAction {
 
 	@Autowired
 	JdbcTemplate jb;//自动寻找bean中id为jb的
+	@Autowired
+	User userbean;//必须跟bean中的id一样
 	@RequestMapping("/news")
 	public ModelAndView ShowNewsDetail(@RequestParam(value="id",required=false) String id)
 	{
@@ -104,6 +106,7 @@ public class NewsAction {
 		
 		List userlist=jb.queryForList("select * from users");
 		modelAndView.addObject("userlist", userlist);
+		modelAndView.addObject("userbean", userbean);
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")
