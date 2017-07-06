@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.myweb.news.NewsEntity;
 import com.myweb.tool.BarFactory;
 import com.myweb.tool.NavBar;
 
@@ -35,7 +36,7 @@ public class NewsAction {
 		NavBar bottomNav=BarFactory.CreateBar("bottom");
 		modelAndView.addObject("bottom_nav", bottomNav.getBarContent());
 		
-		List the_news=new ArrayList();
+		List<String> the_news=new ArrayList();
 		the_news.add("第一条新闻");
 		the_news.add("第2条新闻");
 		the_news.add("第3条新闻");
@@ -64,8 +65,20 @@ public class NewsAction {
 		//.addObject("pagebar", stringBuffer.toString());
 		modelAndView.addObject("pagebar", stringBuffer);
 		
-		com.myweb.news.NewsEntity newsEntity=new com.myweb.news.NewsEntity();
-		modelAndView.addObject("newsEntity", newsEntity.getNews());
+		//NewsEntity newsEntity=new NewsEntity();
+		//modelAndView.addObject("newsEntity", newsEntity.getNews());
+		
+		//确定里面存放的都是什么类型
+		List<String> strings=new ArrayList<>();
+		strings.add("aaa");
+		String aString=strings.get(0);
+		modelAndView.addObject("aString", aString);
+		
+		List<NewsEntity> newsList=new ArrayList<>();
+		newsList.add(new NewsEntity(1,"新闻标题1"));
+		newsList.add(new NewsEntity(2,"新闻标题2"));
+		newsList.add(new NewsEntity(3,"新闻标题3"));
+		modelAndView.addObject("newsList", newsList);
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")

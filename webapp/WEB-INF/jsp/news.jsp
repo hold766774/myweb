@@ -16,7 +16,9 @@
 
 ${content}
 <div>
-${newsEntity }
+<c:forEach items="${newsList }" var="news">
+<a href="#">${news.getNewstitle()}--${news.newstitle}</a> <br/>
+</c:forEach>
 </div>
 <div>
 <c:forEach items="${the_news }" var="newstitle">
@@ -26,6 +28,7 @@ ${newsEntity }
 <c:forEach items="${the_news2 }" var="news">
 <a href="#">${news["newstitle"]}</a> <br/>
 </c:forEach>
+
 
 </div>
 ${pagebar }
