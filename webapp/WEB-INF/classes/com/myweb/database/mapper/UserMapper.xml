@@ -5,4 +5,7 @@
 <select id="selectAll" resultType="UserModel">
 	select * from users  limit 0,2
 </select>
+<select id="selectPWD" parameterType="String" resultType="String">
+	select userpwd from users where username=#{0} limit 0,1
+</select>
 </mapper>

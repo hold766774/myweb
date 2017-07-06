@@ -21,6 +21,8 @@ public class test {
 		modelAndView.setViewName("test");
 		List<UserModel> getUsers=myUser.getAllUsers();
 		 modelAndView.addObject("getUsers", getUsers);
+		 
+		 modelAndView.addObject("userpwd", myUser.getUserPassword("xiaoing"));
 		return modelAndView;
 	}
 }

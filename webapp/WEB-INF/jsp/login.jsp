@@ -2,7 +2,7 @@
 #logintb td{text-align:center}
 </style>
 <p style="color:red;text-align:center">${result }</p>
-<form method="post" action="onlogin" id="loginfrm">
+<form method="post" action="login" id="loginfrm">
 <table style="width:600px;margin:0 auto;" id="logintb">
 	<tr>
 		<td colspan="2">用户登录</td>

@@ -4,3 +4,4 @@
 <c:forEach items="${getUsers }" var="user">
 ${user.getUsername()} <br/>
 </c:forEach>
+${userpwd}
