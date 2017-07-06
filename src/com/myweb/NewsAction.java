@@ -51,6 +51,17 @@ public class NewsAction {
 		the_news2.add(f_news1);
 		the_news2.add(f_news2);
 		modelAndView.addObject("the_news2", the_news2);
+		
+		
+		StringBuffer stringBuffer=new StringBuffer();
+		stringBuffer.append("<a href=''>首页</a> | ");
+		stringBuffer.append("<a href=''>第一页</a> | ");
+		stringBuffer.append("<a href=''>第二页</a> | ");
+		stringBuffer.append("<a href=''>第三页</a> | ");
+		stringBuffer.append("<a href=''>第四页</a> | ");
+		stringBuffer.append("<a href=''>末页</a>");
+		//.addObject("pagebar", stringBuffer.toString());
+		modelAndView.addObject("pagebar", stringBuffer);
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")
