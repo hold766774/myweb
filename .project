@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>myDataBase</name>
+			<type>2</type>
+			<location>F:/eclipseProject/com.myweb.database/src</location>
+		</link>
+		<link>
 			<name>myNews</name>
 			<type>2</type>
 			<location>F:/eclipseProject/com.myweb.news/src</location>
