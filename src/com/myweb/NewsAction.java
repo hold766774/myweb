@@ -1,5 +1,10 @@
 package com.myweb;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +33,24 @@ public class NewsAction {
 		modelAndView.addObject("top_nav", topNav.getBarContent());
 		NavBar bottomNav=BarFactory.CreateBar("bottom");
 		modelAndView.addObject("bottom_nav", bottomNav.getBarContent());
+		
+		List the_news=new ArrayList();
+		the_news.add("第一条新闻");
+		the_news.add("第2条新闻");
+		the_news.add("第3条新闻");
+		modelAndView.addObject("the_news", the_news);
+		
+		List the_news2=new ArrayList();
+		Map f_news=new HashMap();
+		f_news.put("newstitle", "第4条新闻");
+		Map f_news1=new HashMap();
+		f_news1.put("newstitle", "第5条新闻");
+		Map f_news2=new HashMap();
+		f_news2.put("newstitle", "第6条新闻");
+		the_news2.add(f_news);
+		the_news2.add(f_news1);
+		the_news2.add(f_news2);
+		modelAndView.addObject("the_news2", the_news2);
 		return modelAndView;
 	}
 	@RequestMapping("/news/{id}/")
