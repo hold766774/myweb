@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myweb.database.dao.NewsDao;
 import com.myweb.news.NewsEntity;
 import com.myweb.tool.BarFactory;
 import com.myweb.tool.NavBar;
@@ -27,10 +28,15 @@ public class NewsAction {
 	@Autowired
 	User userbean;//必须跟bean中的id一样
 	
+	@Autowired
+	NewsDao newsDao;
+	
 	@RequestMapping("/newslist")
-	public String newslist()
+	public ModelAndView newslist()
 	{
-		return "newslist";
+		ModelAndView modelAndView=new ModelAndView("newslist");//视图
+		modelAndView.addObject("newslist", newsDao.loadNews());
+		return modelAndView;
 	}
 	
 	@RequestMapping("/news")

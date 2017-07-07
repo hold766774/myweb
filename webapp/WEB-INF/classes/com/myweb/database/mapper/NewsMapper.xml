@@ -2,5 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myweb.database.mapper.NewsMapper"> 
 
-
+<select id="selectAll" resultType="NewsModel">
+	select * from news  order by id desc limit 0,10 
+</select>
 </mapper>
