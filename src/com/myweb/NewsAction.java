@@ -26,6 +26,13 @@ public class NewsAction {
 	JdbcTemplate jb;//自动寻找bean中id为jb的
 	@Autowired
 	User userbean;//必须跟bean中的id一样
+	
+	@RequestMapping("/newslist")
+	public String newslist()
+	{
+		return "newslist";
+	}
+	
 	@RequestMapping("/news")
 	public ModelAndView ShowNewsDetail(@RequestParam(value="id",required=false) String id)
 	{
