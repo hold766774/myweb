@@ -19,6 +19,7 @@
   <mvc:annotation-driven/>  
    <mvc:resources mapping="/css/**" location="/bootstrap/css/"/> 
     <mvc:resources mapping="/js/**" location="/bootstrap/js/"/> 
+     <mvc:resources mapping="/images/**" location="/images/"/> 
     <mvc:default-servlet-handler />  
 <!-- 页面目录配置V -->
 <!-- 这里表示指定控制器页面转向的目录及文件后缀 -->

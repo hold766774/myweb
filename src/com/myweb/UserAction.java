@@ -35,7 +35,7 @@ public class UserAction {
 	@RequestMapping("/reg")
 	public ModelAndView reg(UserModel userModel,HttpServletRequest request,HttpServletResponse response) 
 	{
-		ModelAndView modelAndView=new ModelAndView("reg");
+		ModelAndView modelAndView=new ModelAndView("reg2");
 		if(userModel.getUsername()!=null){
 			int getUserID=userDao.addUser(userModel);
 			if(getUserID>0)
