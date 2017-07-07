@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myweb.database.dao.UserDao;
+import com.myweb.database.model.UserModel;
 import com.myweb.users.User;
 @Controller
 public class UserAction {
@@ -32,12 +33,23 @@ public class UserAction {
 		//return "login";
 	}
 	@RequestMapping("/reg")
-	public String reg(User user,HttpServletRequest request,HttpServletResponse response) 
+	public ModelAndView reg(UserModel userModel,HttpServletRequest request,HttpServletResponse response) 
 	{
-		if(user.getUsername()!=null){
-			System.out.println(user.getUsername());
+		ModelAndView modelAndView=new ModelAndView("reg");
+		if(userModel.getUsername()!=null){
+			int getUserID=userDao.addUser(userModel);
+			if(getUserID>0)
+			{
+				modelAndView.addObject("result", "用户注册成功");
+			}else{
+				if(getUserID==-1)
+				{
+					modelAndView.addObject("result", "用户已经存在");
+				}else
+				modelAndView.addObject("result", "用户注册失败");
+			}
 		}
-		return "reg";
+		return modelAndView;
 	}
 	@RequestMapping("/login")
 	public ModelAndView login(@ModelAttribute("loginfrm") User user,HttpServletRequest request,HttpServletResponse response)

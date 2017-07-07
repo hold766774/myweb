@@ -11,7 +11,8 @@
    
 
    <div class="container col-md-offset-3 col-md-8">
-    <h4 class="col-md-offset-1 "  ><strong>用户注册</strong></h4>
+   <p style="color:red;text-align:center" >${result }</p>
+    <h4 class="col-md-offset-1 " ><strong>用户注册</strong></h4>
     <form method="post" class="form-horizontal" action="reg"  >
 	    <div class="form-group">
 	    <label class="col-md-2 control-label">邮箱</label>

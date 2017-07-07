@@ -8,4 +8,13 @@
 <select id="selectPWD" parameterType="String" resultType="String">
 	select userpwd from users where username=#{0} limit 0,1
 </select>
+<select id="selectUser" parameterType="UserModel" resultType="int">
+	select count(*) from users where username=#{username}
+</select>
+<insert id="insertUser" parameterType="UserModel">
+	<selectKey keyProperty="id" resultType="int">
+		select LAST_INSERT_ID()
+	</selectKey>
+	insert into users(username,userpwd,useremail,sex) values(#{username},#{userpwd},#{useremail},#{sex})
+</insert>
 </mapper>
