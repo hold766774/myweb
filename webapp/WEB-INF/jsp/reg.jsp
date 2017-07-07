@@ -8,7 +8,37 @@
   <script src="/js/bootstrap.min.js"></script>
  </head>
  <body>
-   
+   <script>
+   function trim(str)
+   {
+	   return str.replace(/(^\s+)|(\s+$)/g,"");
+   }
+   function checkFrm()
+   {
+	   //$("#useremail,#username,#userpwd").css("border","1px solid #ccc");
+	   $('.form-control').removeAttr("style");
+	   if(trim($("#useremail").val())=="")
+		   {
+		  
+			   $("#useremail").css("border","solid 1px red");
+			   return false;
+		   }
+	   if(trim($("#username").val())=="")
+	   {
+	  
+		   $("#username").css("border","solid 1px red");
+		   return false;
+	   }
+	   if(trim($("#userpwd").val())=="")
+	   {
+	  
+		   $("#userpwd").css("border","solid 1px red");
+		   return false;
+	   }
+	   return false;
+	   //return true;
+   }
+   </script>
 
    <div class="container col-md-offset-3 col-md-8">
    <p style="color:red;text-align:center" >${result }</p>
@@ -52,7 +82,7 @@
      <div class="form-group">
       <label for="inputPassword" class="col-md-2 control-label"></label>
 		    <div class="col-md-5">
-		      <input type="submit" class="form-control btn btn-success"  >
+		      <input type="submit" onclick="return checkFrm()" class="form-control btn btn-success"  >
 		    </div>
      </div>
    </form>
