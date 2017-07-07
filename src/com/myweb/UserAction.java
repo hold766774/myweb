@@ -31,6 +31,14 @@ public class UserAction {
 		response.sendRedirect("login");//跳转到Login方法
 		//return "login";
 	}
+	@RequestMapping("/reg")
+	public String reg(User user,HttpServletRequest request,HttpServletResponse response) 
+	{
+		if(user.getUsername()!=null){
+			System.out.println(user.getUsername());
+		}
+		return "reg";
+	}
 	@RequestMapping("/login")
 	public ModelAndView login(@ModelAttribute("loginfrm") User user,HttpServletRequest request,HttpServletResponse response)
 	{
