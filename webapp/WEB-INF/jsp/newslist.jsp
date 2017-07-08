@@ -14,6 +14,13 @@
 			  <div class="panel-footer">发布 ${news.getPubtime() } 作者 ${news.getPubuser() }  阅读 ${news.getClicknum() }</div>
 		</div>
 		</c:forEach>
+		  <c:import url="/pagination">
+			 <c:param name="sum"  value="${sum }"></c:param>
+			 <c:param name="cp"  value="${page}"></c:param>
+			 <c:param name="max"  value="10"></c:param>
+			 <c:param name="size"  value="${size }"></c:param>
+			  <c:param name="url"  value="/newslist"></c:param>	
+		</c:import>
 	</div>
 	<div class="col-md-3">
 		<div class="list-group">

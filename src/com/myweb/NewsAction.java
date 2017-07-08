@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
@@ -31,13 +34,29 @@ public class NewsAction {
 	@Autowired
 	NewsDao newsDao;
 	
-	@RequestMapping("/newslist")
-	public ModelAndView newslist()
-	{
-		ModelAndView modelAndView=new ModelAndView("newslist");//视图
-		modelAndView.addObject("newslist", newsDao.loadNews());
-		return modelAndView;
-	}
+	 
+		@RequestMapping("/newslist")
+		public ModelAndView loadNews(HttpServletResponse response,HttpServletRequest request)
+		{
+			//加载新闻列表
+			ModelAndView mv=new ModelAndView("newslist");
+			
+			int size=2;
+			
+			
+			mv.addObject("size", size);
+			int page=1;
+			if(request.getParameter("page")!=null)
+			{
+				page=Integer.parseInt(request.getParameter("page"));
+				if(page<=0) page=1;
+			}
+			mv.addObject("newslist", newsDao.loadNews(page,size));
+			mv.addObject("sum", newsDao.getNewsCount());
+			mv.addObject("page",page);
+		   return mv;
+			
+		}
 	
 	@RequestMapping("/news")
 	public ModelAndView ShowNewsDetail(@RequestParam(value="id",required=false) String id)
