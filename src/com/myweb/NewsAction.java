@@ -1,5 +1,6 @@
 package com.myweb;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -18,10 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myweb.database.dao.NewsDao;
+import com.myweb.database.model.NewsModel;
 import com.myweb.news.NewsEntity;
 import com.myweb.tool.BarFactory;
+import com.myweb.tool.MemcachedUtil;
 import com.myweb.tool.NavBar;
 import com.myweb.users.User;
+
+import net.spy.memcached.AddrUtil;
+import net.spy.memcached.MemcachedClient;
 
 @Controller
 public class NewsAction {
@@ -58,11 +64,22 @@ public class NewsAction {
 			
 		}
 		@RequestMapping("/newsdetail")
-		public ModelAndView newsdetail(int newsid)
+		public ModelAndView newsdetail(int newsid) throws IOException
 		{
 			//加载新闻列表
 			ModelAndView mv=new ModelAndView("newsdetail");
-			mv.addObject("news", newsDao.loadNewsDetail(newsid));
+			MemcachedUtil memcachedUtil=new MemcachedUtil();
+			//从缓存中获取数据
+			NewsModel newsModel=(NewsModel) memcachedUtil.get("newsdetail_newsmodel");
+			if(newsModel==null){
+				//缓存中没有数据，需从数据库获取并设置到缓存中
+				newsModel=newsDao.loadNewsDetail(newsid);
+				memcachedUtil.set("newsdetail_newsmodel", newsModel, 3600*24);
+			}else{
+				System.out.println("从缓存中获取数据");
+			}
+			mv.addObject("news", newsModel);
+			
 			return mv;
 		}
 	
