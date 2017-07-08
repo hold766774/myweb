@@ -5,6 +5,9 @@
 <select id="selectAll" resultType="NewsModel" parameterType="int" >
 	select * from news  order by id desc limit #{0}, #{1} 
 </select>
+<select id="selectOne" resultType="NewsModel" parameterType="int" >
+	select * from news  where id=#{0}
+</select>
 <select id="selectAllCount" resultType="int">
 	select count(*) from news
 </select>

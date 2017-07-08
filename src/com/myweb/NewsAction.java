@@ -57,6 +57,14 @@ public class NewsAction {
 		   return mv;
 			
 		}
+		@RequestMapping("/newsdetail")
+		public ModelAndView newsdetail(int newsid)
+		{
+			//加载新闻列表
+			ModelAndView mv=new ModelAndView("newsdetail");
+			mv.addObject("news", newsDao.loadNewsDetail(newsid));
+			return mv;
+		}
 	
 	@RequestMapping("/news")
 	public ModelAndView ShowNewsDetail(@RequestParam(value="id",required=false) String id)

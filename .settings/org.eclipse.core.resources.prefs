@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//webapp/WEB-INF/jsp/index.jsp=UTF-8
 encoding//webapp/WEB-INF/jsp/login.jsp=UTF-8
 encoding//webapp/WEB-INF/jsp/news.jsp=UTF-8
+encoding//webapp/WEB-INF/jsp/newsdetail.jsp=UTF-8
 encoding//webapp/WEB-INF/jsp/newslist.jsp=UTF-8
 encoding//webapp/WEB-INF/jsp/page.jsp=UTF-8
 encoding//webapp/WEB-INF/jsp/reg.jsp=UTF-8
