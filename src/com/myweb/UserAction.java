@@ -52,14 +52,15 @@ public class UserAction {
 		return modelAndView;
 	}
 	@RequestMapping("/login")
-	public ModelAndView login(@ModelAttribute("loginfrm") User user,HttpServletRequest request,HttpServletResponse response)
+	public ModelAndView login(@ModelAttribute("loginfrm") UserModel user,HttpServletRequest request,HttpServletResponse response)
 	{
 		ModelAndView modelAndView=new ModelAndView("login");
 		
-		if(user.getUsername()!=null&&user.getUserpsw()!=null){
+		if(user.getUsername()!=null&&user.getUserpwd()!=null){
 			//用户提交登录处理
 			String getPwd=userDao.getUserPassword(user.getUsername());
-			if(getPwd!=null&&getPwd.equals(user.getUserpsw())){//密码比对
+		
+			if(getPwd!=null&&getPwd.equals(user.getUserpwd())){//密码比对
 				//代表用户的登录成功
 				Cookie logUser=new Cookie("loginUserName", user.getUsername());
 				//logUser.setDomain("");
@@ -68,11 +69,13 @@ public class UserAction {
 				response.addCookie(logUser);
 				//modelAndView.addObject("result", "登录成功");
 				modelAndView.setViewName("index");//返回首页
+			
+				return modelAndView;
 			}else{
 				modelAndView.addObject("result", "用户名密码错误");
 			}
 		}
-		modelAndView.addObject("info", "请输入用户名和密码");
+		//modelAndView.addObject("info", "请输入用户名和密码");
 		
 		Cookie[] getCookies=request.getCookies();
 		for (Cookie cookie : getCookies) {
