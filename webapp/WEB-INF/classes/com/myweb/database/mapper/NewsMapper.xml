@@ -12,7 +12,10 @@
 	select count(*) from news
 </select>
 <select id="selectClickNum" resultType="int" parameterType="int" >
-	update news set clicknum=clicknum+1 where id=#{0};
+	
 	select clicknum from news where id=#{0}
 </select>
+<update id="updateClickNum" parameterType="int" >
+	update news set clicknum=#{1} where id=#{0};	
+</update>
 </mapper>

@@ -24,6 +24,7 @@ import com.myweb.news.NewsEntity;
 import com.myweb.tool.BarFactory;
 import com.myweb.tool.MemcachedUtil;
 import com.myweb.tool.NavBar;
+import com.myweb.tool.NewsClick;
 import com.myweb.users.User;
 
 import net.spy.memcached.AddrUtil;
@@ -78,8 +79,8 @@ public class NewsAction {
 			}else{
 				System.out.println("从缓存中获取数据");
 			}
-			int newsClickNum=newsDao.getNewsClickNum(newsid);
-			
+			//int newsClickNum=newsDao.getNewsClickNum(newsid);
+			int newsClickNum=new NewsClick(newsDao).getNewsClickNum(newsid);
 			mv.addObject("news", newsModel);
 			mv.addObject("newsClickNum", newsClickNum);
 			return mv;
