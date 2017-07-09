@@ -29,4 +29,10 @@ public class MsgAction {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping("/send")
+	public String send(HttpServletRequest request,HttpServletResponse response) {
+		
+		return "msg";
+	}
 }

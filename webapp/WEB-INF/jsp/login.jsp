@@ -1,4 +1,6 @@
-﻿<link rel="stylesheet"  href="/css/bootstrap.min.css" />
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
+<c:import url="/loadpage?type=top"/>
+<link rel="stylesheet"  href="/css/bootstrap.min.css" />
 <style>
 #logintb td{text-align:center}
 </style>
@@ -27,3 +29,4 @@
     </div>
 </div>
 </form>
+<c:import url="/loadpage?type=bottom"/>

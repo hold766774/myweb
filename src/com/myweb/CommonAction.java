@@ -1,5 +1,6 @@
 package com.myweb;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,8 +17,17 @@ public class CommonAction {
 		return "top";
 	}*/
 	@RequestMapping("/loadpage")
-	public String loadPage(HttpServletRequest request,HttpServletResponse response) {
-		return request.getParameter("type");
+	public ModelAndView loadPage(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv=new ModelAndView("page");
+		mv.setViewName(request.getParameter("type"));
+		Cookie[] getCookies=request.getCookies();
+		for (Cookie cookie : getCookies) {
+			if(cookie.getName().equals("loginUserName"))
+			{
+				mv.addObject("UserName", cookie.getValue());
+			}
+		}
+		return mv;
 	}
 
 	public String genPageUrl(String url,int page)

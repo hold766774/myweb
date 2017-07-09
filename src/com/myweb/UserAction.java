@@ -52,7 +52,7 @@ public class UserAction {
 		return modelAndView;
 	}
 	@RequestMapping("/login")
-	public ModelAndView login(@ModelAttribute("loginfrm") UserModel user,HttpServletRequest request,HttpServletResponse response)
+	public ModelAndView login(@ModelAttribute("loginfrm") UserModel user,HttpServletRequest request,HttpServletResponse response) throws IOException
 	{
 		ModelAndView modelAndView=new ModelAndView("login");
 		
@@ -68,8 +68,8 @@ public class UserAction {
 				logUser.setPath("/");
 				response.addCookie(logUser);
 				//modelAndView.addObject("result", "登录成功");
-				modelAndView.setViewName("index");//返回首页
-			
+				//modelAndView.setViewName("index");//返回首页
+				response.sendRedirect("newslist");//跳转到Login方法
 				return modelAndView;
 			}else{
 				modelAndView.addObject("result", "用户名密码错误");

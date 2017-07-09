@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html> 
+﻿<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"  %>
+<!DOCTYPE html> 
 <html>
 <head>
  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
@@ -38,8 +39,14 @@
         <button type="submit" class="btn btn-default">搜索</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">登录</a></li>
+      <c:if test="${UserName ==null}">
+      	 <li><a href="/login" target="black">登录</a></li>
          <li><a href="#">注册</a></li>
+      </c:if>
+         <c:if test="${UserName !=null}">
+      	 <li><a href="#">欢迎您：${UserName }</a></li>
+         <li><a href="/unlog">注销</a></li>
+      </c:if>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
