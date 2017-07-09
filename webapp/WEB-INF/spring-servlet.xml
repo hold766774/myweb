@@ -31,7 +31,7 @@
 <!-- 淘宝数据源 -->
 <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 	<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-	<property name="url" value="jdbc:mysql://localhost:3306/myweb" />
+	<property name="url" value="jdbc:mysql://localhost:3306/myweb?allowMultiQueries=true" />
 	<property name="username" value="root" />
 	<property name="password" value="root" />
 	

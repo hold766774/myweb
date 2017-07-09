@@ -11,7 +11,7 @@
 			  <div class="panel-body" style="min-height:400px;_height:400px;">
 			  	${news.getNews_content() }
 			  </div>
-			  <div class="panel-footer">发布 ${news.getPubtime() } 作者 ${news.getPubuser() }  阅读 ${news.getClicknum() }</div>
+			  <div class="panel-footer">发布 ${news.getPubtime() } 作者 ${news.getPubuser() }  阅读 ${newsClickNum }</div>
 		</div>
 
 		  

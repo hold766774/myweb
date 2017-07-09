@@ -78,8 +78,10 @@ public class NewsAction {
 			}else{
 				System.out.println("从缓存中获取数据");
 			}
-			mv.addObject("news", newsModel);
+			int newsClickNum=newsDao.getNewsClickNum(newsid);
 			
+			mv.addObject("news", newsModel);
+			mv.addObject("newsClickNum", newsClickNum);
 			return mv;
 		}
 	
