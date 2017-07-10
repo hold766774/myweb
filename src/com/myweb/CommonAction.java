@@ -22,9 +22,10 @@ public class CommonAction {
 	@RequestMapping("/loadreview")
 	public ModelAndView loadreview(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mv=new ModelAndView("review");
-		//String newsid=request.getParameter("newsid");
-		//String newstype=request.getParameter("newstype");
-		
+		String newsid=request.getParameter("newsid");
+		String newstype=request.getParameter("newstype");
+		mv.addObject("newsid", newsid);
+		mv.addObject("newstype", newstype);
 		return mv;
 	}
 	@RequestMapping("/loadpage")

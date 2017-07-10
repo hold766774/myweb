@@ -15,7 +15,7 @@
 		</div>
 
 		<c:import url="/loadreview">
-			<c:param name="newsid" value="3"></c:param>
+			<c:param name="newsid" value="${newsid }"></c:param>
 			<c:param name="newstype" value="1"></c:param>
 		</c:import>
 	

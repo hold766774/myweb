@@ -1,4 +1,29 @@
-﻿<div class="panel panel-default">
+﻿<script>
+	$(function(){
+		var newsid='${newsid}';
+		var newstype='${newstype}';
+		$("#cmdReview").click(function(){
+			var getReviewCnt=$("#reviewcnt").val();
+			if(getReviewCnt.trim()=="")
+				alert("评论内容不能为空");
+			else{
+				  var $btn = $(this).button('loading')
+				    // business logic...
+				  $.post("/addreview",{"rcnt":getReviewCnt,"newsid":newsid,"newstype":newstype},function(result){
+					  if(result=="unlogin")
+						  {
+						  alert("请先登录再评论");
+						  }else if(result=="1"){
+							  alert("评论发表成功");
+						  }
+					  $btn.button('reset')
+				  });
+				
+			}
+		})
+	})
+</script>
+<div class="panel panel-default">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">发表评论</h3>
 			  </div>
@@ -7,11 +32,11 @@
 			  		<div class="col-md-12 column">
 					
 							<div class="form-group">
-								<textarea rows="5" class="form-control"></textarea>
+								<textarea rows="5" class="form-control" id="reviewcnt"></textarea>
 							</div>
 							
 							
-							 <button  class="btn btn-success">提交</button>
+							 <button type="button" id="cmdReview" class="btn btn-success" data-loading-text="正在提交..." autocomplete="off" >提交</button>
 						
 					</div>
 					

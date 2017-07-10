@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myweb.database.dao.NewsDao;
+import com.myweb.database.dao.ReviewDao;
 import com.myweb.database.model.NewsModel;
+import com.myweb.database.model.ReviewModel;
 import com.myweb.news.NewsEntity;
 import com.myweb.tool.BarFactory;
+import com.myweb.tool.Common;
 import com.myweb.tool.MemcachedUtil;
 import com.myweb.tool.NavBar;
 import com.myweb.tool.NewsClick;
@@ -40,7 +43,31 @@ public class NewsAction {
 	
 	@Autowired
 	NewsDao newsDao;
-	
+	@Autowired
+	ReviewDao reviewDao;
+	@RequestMapping("/addreview")
+	public void addreview(HttpServletResponse response,HttpServletRequest request) throws IOException
+	{
+		String userName=Common.getUserName();
+		int newsid=Integer.parseInt(request.getParameter("newsid"));
+		String rcnt=request.getParameter("rcnt");
+		
+		if(userName=="")
+		{
+			response.getWriter().write("unlogin");
+		}else
+		{
+			String userip=Common.getUserIP();
+			ReviewModel reviewModel=new ReviewModel();
+			reviewModel.setNewsid(newsid);
+			reviewModel.setNewstype(1);
+			reviewModel.setRcnt(rcnt);
+			reviewModel.setUserip(userip);
+			reviewModel.setUsername(userName);
+			reviewDao.addReview(reviewModel);
+			response.getWriter().write("1");
+		}
+	}
 	 
 		@RequestMapping("/newslist")
 		public ModelAndView loadNews(HttpServletResponse response,HttpServletRequest request)
@@ -82,6 +109,7 @@ public class NewsAction {
 			//int newsClickNum=newsDao.getNewsClickNum(newsid);
 			int newsClickNum=new NewsClick(newsDao).getNewsClickNum(newsid);
 			mv.addObject("news", newsModel);
+			mv.addObject("newsid", newsid);
 			mv.addObject("newsClickNum", newsClickNum);
 			return mv;
 		}
