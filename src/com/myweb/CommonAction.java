@@ -1,14 +1,21 @@
 package com.myweb;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+import com.myweb.database.dao.ReviewDao;
+import com.myweb.database.model.ReviewModel;
 import com.myweb.tool.Common;
 
 
@@ -19,13 +26,32 @@ public class CommonAction {
 	{
 		return "top";
 	}*/
+	@Autowired
+	ReviewDao reviewDao;
 	@RequestMapping("/loadreview")
 	public ModelAndView loadreview(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mv=new ModelAndView("review");
-		String newsid=request.getParameter("newsid");
-		String newstype=request.getParameter("newstype");
+		
+		int newsid=Integer.parseInt(request.getParameter("newsid"));
+		int newstype=Integer.parseInt(request.getParameter("newstype"));
 		mv.addObject("newsid", newsid);
 		mv.addObject("newstype", newstype);
+		if(request.getParameter("isload")!=null)
+		{
+			int page=Integer.parseInt(request.getParameter("page"));
+			int pagesize=Integer.parseInt(request.getParameter("pagesize"));
+			List<ReviewModel> getReview=reviewDao.loadReview(newstype, newsid, page, pagesize);
+			String result=JSON.toJSONString(getReview);
+			System.out.println(result);
+			try {
+				response.getWriter().write(result);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+			return null;//不加载模板
+		}
 		return mv;
 	}
 	@RequestMapping("/loadpage")

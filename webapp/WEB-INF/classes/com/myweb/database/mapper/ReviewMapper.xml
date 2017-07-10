@@ -5,5 +5,7 @@
 <insert id="addReview" parameterType="ReviewModel">
 	insert into review(rcnt,username,userip,addtime,newsid,newstype) values(#{rcnt},#{username},#{userip},now(),#{newsid},#{newstype})
 </insert>
-
+<select id="selectReview" parameterType="int" resultType="ReviewModel">
+	select * from review where newstype=#{0} and newsid=#{1} order by id desc limit #{2},#{3}
+</select>
 </mapper>

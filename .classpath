@@ -33,5 +33,6 @@
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/mysql-connector-java-5.1.26-bin.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/spymemcached-2.10.2.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/Jedis.2.6.0.jar"/>
+	<classpathentry kind="lib" path="webapp/WEB-INF/lib/fastjson-1.2.34.jar"/>
 	<classpathentry kind="output" path="webapp/WEB-INF/classes"/>
 </classpath>

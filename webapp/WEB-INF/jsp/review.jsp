@@ -1,7 +1,9 @@
-﻿<script>
+﻿<script type="text/javascript">
 	$(function(){
 		var newsid='${newsid}';
 		var newstype='${newstype}';
+		var page=1;//当前页码
+		var pagesize=1;//一页显示多少条
 		$("#cmdReview").click(function(){
 			var getReviewCnt=$("#reviewcnt").val();
 			if(getReviewCnt.trim()=="")
@@ -20,7 +22,45 @@
 				  });
 				
 			}
-		})
+		});
+		$("#loadView").click(function(){
+			  var btn = $(this).button('loading');
+			  
+			  loadReview(btn);
+		});
+		 loadReview(null);
+		function loadReview(bnt)
+		{
+			$.post("/loadreview",{"newsid":newsid,"newstype":newstype,"page":page,"pagesize":pagesize,"isload":1},function(result){
+				 // alert(result);
+				
+				 page++;
+				 if(bnt!=null)
+					 {
+						 bnt.button('reset');
+					 }
+					
+				 var getReview=eval("("+result+")");//json->对象
+				 if(getReview.length>0)
+					 {
+					 var htmlTpl=$('#reviewTpl').prop("outerHTML");
+					 htmlTpl=htmlTpl.replace('id="reviewTpl"',"");
+					 htmlTpl=htmlTpl.replace('display:none',"");
+					 	for(var i=0;i<getReview.length;i++)
+					 		{
+					 			var newHtml=htmlTpl.replace("{reviewtime}",getReview[i].addtime);
+					 			newHtml=newHtml.replace("{reviewcnt}",getReview[i].rcnt);
+					 		
+					 			$("#reviewlist").append(newHtml)
+					 		}
+					 
+					 }else{
+						 alert("后面没有评论了");
+					 }
+				  
+			  })
+		}
+		
 	})
 </script>
 <div class="panel panel-default">
@@ -42,16 +82,22 @@
 					
 				</div>
 				<!-- 评论列表 -->
-				<div class="row clearfix col-md-11" style="margin-top:10px;">
+				<div class="row clearfix col-md-11" style="margin-top:5px;display:none" id="reviewTpl">
 					<div class="panel panel-default">
 							<div class="panel-heading">
-						    	<h3 class="panel-title">用户名 发表时间：2015-4-9</h3>
+						    	<h3 class="panel-title">用户名 发表时间：{reviewtime}</h3>
 						  </div>
 						  <div class="panel-body">
-						  		<div class="col-md-9">评论内容</div>
+						  		<div class="col-md-9">{reviewcnt}</div>
 						  </div>
 					</div>
 					
+				</div>
+				<div id="reviewlist">
+				
+				</div>
+				<div class="row clearfix col-md-11" style="margin-top:10px;">
+					 <button type="button" id="loadView" class="btn btn-info col-md-12" data-loading-text="正在加载..." autocomplete="off">加载更多评论</button>
 				</div>
 			 </div>
 			
