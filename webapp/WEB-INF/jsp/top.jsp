@@ -46,7 +46,7 @@
          <li><a href="#">注册</a></li>
       </c:if>
          <c:if test="${UserName !=null}">
-      	<li><a href="#" id="msgAlert">欢迎您：${UserName }</a></li>
+      	<li><a href="/msglist" id="msgAlert">欢迎您：${UserName }</a></li>
          <li><a href="/unlog">注销</a></li>
       </c:if>
       </ul>

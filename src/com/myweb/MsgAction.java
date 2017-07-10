@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.MvcNamespaceHandler;
 
+import com.myweb.database.dao.UserDao;
+import com.myweb.database.model.MyMsg;
 import com.myweb.tool.WebMsg;
 
 @Controller
 public class MsgAction {
 	@Autowired
 	HttpServletRequest request;
+	@Autowired
+	UserDao userDao;
 	@RequestMapping("/msgtest")
 	public String msgtest(HttpServletRequest request,HttpServletResponse response) {
 		WebMsg webMsg=new WebMsg();
@@ -50,6 +54,51 @@ public class MsgAction {
 			e.printStackTrace();
 		}
 	}
+	@RequestMapping("/addmsg")
+	public void addmsg(HttpServletRequest request,HttpServletResponse response) {
+		String sender=request.getParameter("sender");//发送者
+		String sendtime=request.getParameter("sendtime");//消息内容
+		String msgcnt=request.getParameter("msgcnt");//发送时间
+		String reveicer=this.getLoginUserName();//接收者
+		
+		MyMsg myMsg=new MyMsg();
+		myMsg.sender=sender;
+		myMsg.msgcnt=msgcnt;
+		myMsg.receiver=reveicer;
+		myMsg.sendtime=sendtime;
+		
+		userDao.addMsg(myMsg);
+		try {
+			response.getWriter().write("1");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+	@RequestMapping("/msglist2")
+	public ModelAndView msglist2(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView modelAndView=new ModelAndView("msglist_read");
+		WebMsg webMsg=new WebMsg();
+		String userName=this.getLoginUserName();
+		int page=1;
+		if(request.getParameter("page")!=null)
+		{
+			page=Integer.parseInt(request.getParameter("page"));
+			if(page<=0) page=1;
+		}
+		int pagesize=10;
+		
+		/*List<String> msgList=webMsg.loadMsg(userName, page, pagesize);
+		if(msgList!=null)
+		{
+			modelAndView.addObject("msgList",msgList);
+		}*/
+		modelAndView.addObject("msglist",userDao.getMyMsg(this.getLoginUserName()));
+		modelAndView.addObject("page",page);
+		modelAndView.addObject("sum", webMsg.getMsgLength(userName));
+		return modelAndView;
+	}
 	@RequestMapping("/msglist")
 	public ModelAndView msglist(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView modelAndView=new ModelAndView("msglist");
@@ -68,6 +117,7 @@ public class MsgAction {
 			modelAndView.addObject("msgList",msgList);
 		}
 		modelAndView.addObject("page",page);
+		modelAndView.addObject("CurrentUserName",userName);
 		modelAndView.addObject("sum", webMsg.getMsgLength(userName));
 		return modelAndView;
 	}

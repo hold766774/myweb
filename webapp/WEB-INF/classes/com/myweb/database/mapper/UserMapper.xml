@@ -11,6 +11,12 @@
 <select id="selectUser" parameterType="UserModel" resultType="int">
 	select count(*) from users where username=#{username}
 </select>
+<select id="selectMsg" parameterType="String" resultType="MyMsg">
+	select * from mymessage where receiver=#{0}
+</select>
+<insert id="addMsg" parameterType="MyMsg">
+	insert into mymessage(sender,receiver,sendtime,msgcnt,addtime) values(#{sender},#{receiver},#{sendtime},#{msgcnt},now())
+</insert>
 <insert id="insertUser" parameterType="UserModel">
 	<selectKey keyProperty="id" resultType="int">
 		select LAST_INSERT_ID()
