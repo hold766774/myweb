@@ -4,9 +4,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.myweb.tool.Common;
 
 
 @Controller
@@ -16,17 +19,25 @@ public class CommonAction {
 	{
 		return "top";
 	}*/
+	@RequestMapping("/loadreview")
+	public ModelAndView loadreview(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv=new ModelAndView("review");
+		//String newsid=request.getParameter("newsid");
+		//String newstype=request.getParameter("newstype");
+		
+		return mv;
+	}
 	@RequestMapping("/loadpage")
 	public ModelAndView loadPage(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mv=new ModelAndView("page");
 		mv.setViewName(request.getParameter("type"));
+		String username=Common.getUserName();
 		Cookie[] getCookies=request.getCookies();
-		for (Cookie cookie : getCookies) {
-			if(cookie.getName().equals("loginUserName"))
-			{
-				mv.addObject("UserName", cookie.getValue());
-			}
+		if(username!=null)
+		{
+			mv.addObject("UserName",username );
 		}
+	
 		return mv;
 	}
 

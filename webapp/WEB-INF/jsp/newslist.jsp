@@ -6,7 +6,7 @@
 	<c:forEach items="${newslist }" var="news">
 		<div class="panel panel-default">
 			  <div class="panel-heading">
-			    <h3 class="panel-title">${news.getNews_title() }</h3>
+			    <h3 class="panel-title"><a href="/newsdetail?newsid=${news.getId() }">${news.getNews_title() }</a></h3>
 			  </div>
 			  <div class="panel-body">
 			  	${news.getNews_content() }

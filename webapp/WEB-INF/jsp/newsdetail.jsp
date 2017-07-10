@@ -14,6 +14,12 @@
 			  <div class="panel-footer">发布 ${news.getPubtime() } 作者 ${news.getPubuser() }  阅读 ${newsClickNum }</div>
 		</div>
 
+		<c:import url="/loadreview">
+			<c:param name="newsid" value="3"></c:param>
+			<c:param name="newstype" value="1"></c:param>
+		</c:import>
+	
+		
 		  
 	</div>
 	<div class="col-md-3">

@@ -71,7 +71,7 @@ public class NewsAction {
 			ModelAndView mv=new ModelAndView("newsdetail");
 			MemcachedUtil memcachedUtil=new MemcachedUtil();
 			//从缓存中获取数据
-			NewsModel newsModel=(NewsModel) memcachedUtil.get("newsdetail_newsmodel");
+			NewsModel newsModel=(NewsModel) memcachedUtil.get("newsdetail_newsmodel"+String.valueOf(newsid));
 			if(newsModel==null){
 				//缓存中没有数据，需从数据库获取并设置到缓存中
 				newsModel=newsDao.loadNewsDetail(newsid);
