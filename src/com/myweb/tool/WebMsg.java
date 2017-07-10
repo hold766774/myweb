@@ -32,4 +32,7 @@ public class WebMsg {
 	public void delMsg(String keyName) {
 		jedis.hdel("webmsg", keyName);//删除消息提醒
 	}
+	public boolean hasMsg(String username) {
+		return jedis.exists("msg_"+username);
+	}
 }

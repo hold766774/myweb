@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
   <script src="/js/jq.js"></script>
   <script src="/js/bootstrap.min.js"></script>
- 
+ <style>
+ .msg{background:url(/images/hd.png) no-repeat -8px center;}
+ </style>
  
  </head>
  <body>
@@ -44,7 +46,7 @@
          <li><a href="#">注册</a></li>
       </c:if>
          <c:if test="${UserName !=null}">
-      	 <li><a href="#">欢迎您：${UserName }</a></li>
+      	<li><a href="#" id="msgAlert">欢迎您：${UserName }</a></li>
          <li><a href="/unlog">注销</a></li>
       </c:if>
       </ul>
